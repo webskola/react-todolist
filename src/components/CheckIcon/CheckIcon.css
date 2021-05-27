@@ -5,7 +5,6 @@
 }
 .checkbox__symbol--checked {
 	display: block;
-	fill: #fff;
 }
 .checkbox__icon {
 	display: block;
