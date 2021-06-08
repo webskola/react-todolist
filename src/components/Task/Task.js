@@ -1,43 +1,37 @@
 import { Checkbox } from "../Checkbox/Checkbox";
 import { Input } from "../Input/Input";
 import "./Task.css";
-import { categoryList } from "../../data/categoryList";
 import { CategoryDot } from "../CategoryDot/CategoryDot";
 import { Delete } from "../Delete/Delete";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { EditingContext } from "../../providers/EditingProvider";
+import { TASK_KEY } from "../../constants";
+import { CategoryModal } from "../CategoryModal/CategoryModal";
+import { DataContext } from "../../providers/DataProvider";
 
-export const taskKeys = {
-  done: "done",
-  copytext: "text",
-  category: "category",
-};
-
-export const Task = ({
-  done,
-  text,
-  category,
-  updateList,
-  index,
-  deleteTask,
-  id,
-  setCategoryModalOpen,
-  setActiveTask,
-}) => {
+export const Task = ({ done, text, category, updateList, index, deleteTask, id }) => {
+  const [isCategoryModalOpen, setCategoryModalOpen] = useState(false);
   const { isEditing } = useContext(EditingContext);
+  const { categoryList } = useContext(DataContext);
   const currentCategory = categoryList.find((categoryItem) => categoryItem.id === category);
   const handleState = (checked) => {
-    updateList(index, taskKeys.done, checked);
+    updateList(index, TASK_KEY.done, checked);
   };
   const handleText = (text) => {
-    updateList(index, taskKeys.copytext, text);
-  };
-  const handleDelete = () => {
-    deleteTask(id);
+    updateList(index, TASK_KEY.copytext, text);
   };
   const openCategoryModal = () => {
     setCategoryModalOpen(true);
-    setActiveTask({ category, index });
+  };
+  const closeCategoryModal = () => {
+    setCategoryModalOpen(false);
+  };
+  const handleCategory = (value) => {
+    updateList(index, TASK_KEY.category, value);
+    closeCategoryModal();
+  };
+  const handleDelete = () => {
+    deleteTask(id);
   };
   return (
     <div className="task">
@@ -54,6 +48,9 @@ export const Task = ({
       </div>
       <div className="task__category" onClick={openCategoryModal}>
         {<CategoryDot color={currentCategory && currentCategory.color} />}
+        {isCategoryModalOpen && (
+          <CategoryModal activeCategoryId={category} onClick={handleCategory} closeModal={closeCategoryModal} />
+        )}
       </div>
     </div>
   );

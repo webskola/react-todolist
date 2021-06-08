@@ -1,7 +1,5 @@
-.button-circle {
-  position: absolute;
-  bottom: 44px;
-  right: 16px;
+.button-circle,
+.button-circle--active {
   width: 64px;
   height: 64px;
   border-radius: 50%;
@@ -13,6 +11,7 @@
   background-color: #fff;
   transition: background-color 0.25s ease-in-out;
 }
+.button-circle--active,
 .button-circle:hover {
   background-color: #006CFF;
 }
@@ -20,8 +19,12 @@
   fill: #006CFF;
   width: 24px;
   height: 24px;
-  transition: fill 0.25s ease-in-out;
+  transition: fill 0.25s ease-in-out, transform 0.25s ease-in-out;
 }
+.button-circle--active .button-circle__icon,
 .button-circle:hover .button-circle__icon {
   fill: #fff;
+}
+.button-circle--active .button-circle__icon {
+  transform: rotate(225deg);
 }

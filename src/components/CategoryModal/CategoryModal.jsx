@@ -1,11 +1,13 @@
 import "./CategoryModal.css";
-import { categoryList } from "../../data/categoryList";
 import { CategoryDot } from "../CategoryDot/CategoryDot";
 import { CheckIcon } from "../CheckIcon/CheckIcon";
 import { CloseButton } from "../CloseButton/CloseButton";
+import { useContext } from "react";
+import { DataContext } from "../../providers/DataProvider";
 
 const CategoryItem = ({ id, title, color, isActive, onClick }) => {
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.stopPropagation();
     onClick(id);
   };
   return (
@@ -22,6 +24,7 @@ const CategoryItem = ({ id, title, color, isActive, onClick }) => {
 };
 
 export const CategoryModal = ({ activeCategoryId, onClick, closeModal }) => {
+  const { categoryList } = useContext(DataContext);
   const renderCategory = (category) => (
     <CategoryItem key={category.id} isActive={activeCategoryId === category.id} onClick={onClick} {...category} />
   );
