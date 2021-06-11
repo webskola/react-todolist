@@ -17,11 +17,6 @@ export const DEFAULT_NEW_TASK = {
   [TASK_KEY.category]: "",
 };
 
-export const getDefaultNewCategory = (color) => ({
-  [CATEGORY_KEY.title]: "",
-  [CATEGORY_KEY.color]: color,
-});
-
 export const DATA = {
   TODOLIST: "todolist",
   CATEGORIES: "categoryList",

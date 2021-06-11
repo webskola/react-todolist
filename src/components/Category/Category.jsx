@@ -11,6 +11,7 @@ export const Category = ({ id, title, color, setActiveCategoryId, isActive }) =>
   const handleDelete = () => {
     console.log("delete");
   };
+
   return (
     <div className="category">
       <div className={`category__action-item-back ${isEditing && "category__action-item-back--flipped"}`}>

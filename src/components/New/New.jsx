@@ -8,12 +8,15 @@ export const New = () => {
   const handleClick = () => {
     setOpen(!isOpen);
   };
+  const closeMenu = () => {
+    setOpen(false);
+  };
   return (
     <div className={!isOpen ? "new" : "new--open"}>
       <div className="new__action">
         <ButtonCircle onClick={handleClick} isActive={isOpen} />
         <div className={!isOpen ? "new__menu" : "new__menu--open"}>
-          <DropdownMenu setOpen={setOpen} />
+          <DropdownMenu closeMenu={closeMenu} />
         </div>
       </div>
     </div>
