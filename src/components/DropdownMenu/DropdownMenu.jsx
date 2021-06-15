@@ -8,24 +8,27 @@ import { DataContext } from "../../providers/DataProvider";
 import "./DropdownMenu.css";
 import { Modal } from "../Modal/Modal";
 import { CategoryForm } from "../CategoryForm/CategoryForm";
+import { EditingContext } from "../../providers/EditingProvider";
 
 export const DropdownMenu = ({ closeMenu }) => {
   const { setTodoList, todoList } = useContext(DataContext);
+  const { setNewTaskId } = useContext(EditingContext);
   const addTask = () => {
     const id = nanoid();
     const newList = [{ ...DEFAULT_NEW_TASK, id }, ...todoList];
     setTodoList(newList);
     closeMenu();
+    setNewTaskId(id);
   };
 
   const [showCategoryModal, hideCategoryModal] = useModal(() => {
-    const onSubmit = () => {
+    const handleCloseModal = () => {
       hideCategoryModal();
       closeMenu();
     };
     return (
-      <Modal title="Add Category" closeModal={hideCategoryModal}>
-        <CategoryForm onSubmit={onSubmit} />
+      <Modal title="Add Category" closeModal={handleCloseModal}>
+        <CategoryForm onSubmit={handleCloseModal} />
       </Modal>
     );
   });

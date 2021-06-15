@@ -17,9 +17,5 @@ export const TodoList = ({ activeCategoryId }) => {
     if (activeCategoryId && activeCategoryId !== item.category) return null;
     return <Task key={item.id} index={key} {...item} updateList={updateList} deleteTask={deleteTask} />;
   };
-  return (
-    <>
-      <div className="tasklist">{todoList.map(renderItem)}</div>
-    </>
-  );
+  return <div className="tasklist">{todoList.map(renderItem)}</div>;
 };

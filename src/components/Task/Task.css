@@ -11,6 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .task__action {
   flex: 0 0 60px;
@@ -35,4 +36,46 @@
 }
 .task__action-item-back--flipped {
   transform: rotateY(0deg);
+}
+.task__datepicker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-in-out;
+}
+.task__datepicker--active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.react-datepicker__input-container {
+  display: block;
+}
+
+.task__due {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  opacity: 0.5;
+  stroke: #000;
+}
+.task__due--late {
+  color: #f00;
+  opacity: 1;
+  stroke: #f00;
+}
+.task__due-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+.task__due-item + .task__due-item {
+  margin-left: 12px;
+}
+.task__due-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
 }

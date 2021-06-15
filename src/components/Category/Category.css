@@ -1,5 +1,4 @@
 .category {
-  
   display: flex;
 }
 .category + .category {
@@ -12,6 +11,10 @@
   font-weight: 500;
   cursor: pointer;
   flex: 1 0 0%;
+  display: flex;
+}
+.category__box--disabled {
+  cursor: default;
 }
 .category__action-item-back {
   flex: 0 0 60px;
@@ -25,4 +28,20 @@
 }
 .category__action-item-back--flipped {
   transform: rotateY(0deg);
+}
+.category__title {
+  flex: 1 0 0%;
+}
+.category__edit {
+  height: 24px;
+  flex: 0 0 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-in-out;
+  cursor: pointer;
+}
+.category__edit--active {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.25s ease-in-out;
 }
