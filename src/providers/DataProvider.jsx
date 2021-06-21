@@ -12,14 +12,17 @@ const DEFAULT_VALUE = {
 export const DataContext = React.createContext(DEFAULT_VALUE);
 
 const initialCategoryList = ls.get(DATA.CATEGORIES);
+
 const initialTaskList = ls.get(DATA.TODOLIST);
 
 export const DataProvider = ({ children }) => {
   const [categoryList, setCategoryList] = useState(initialCategoryList);
+
   const [taskList, setTaskList] = useState(initialTaskList);
 
   const setTodoList = (newList) => {
     setTaskList(newList);
+
     ls.set(DATA.TODOLIST, newList);
   };
   const handleCategoryList = (newList) => {
